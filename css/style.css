@@ -1,0 +1,124 @@
+
+.togglemenu{
+  position: relative;
+  width: 70px;
+  height: 70px;
+  background: #eee;
+  box-shadow: 0 .8rem 1.5rem rgba(0, 0, 0, .08);
+  border-radius: .8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow-x: hidden;
+}
+
+.togglemenu span{
+  position: absolute;
+  width: 40px;
+  height: 4px;
+  background: #1863ff;
+  border-radius: 4px;
+  transition: 1s;
+}
+
+.togglemenu span:nth-child(1){
+  transform: translateY(-15px);
+  width: 25px;
+  left: 15px;
+}
+
+.togglemenu span:nth-child(3){
+  transform: translateY(15px);
+  width: 15px;
+  left: 15px;
+}
+
+.togglemenu.togglemenu_active span:nth-child(1){
+  width: 40px;
+  transform: translateY(0) rotate(405deg);
+}
+
+.togglemenu.togglemenu_active span:nth-child(2){
+  transform: translateX(100px);
+}
+
+.togglemenu.togglemenu_active span:nth-child(3){
+  width: 40px;
+  transform: translateY(0) rotate(675deg);
+}
+
+
+
+
+.arrow {
+  cursor: pointer;
+  padding: 0;
+  background: #ddd;
+  border-radius: 15px;
+  border: 1px solid gray;
+  font-size: 24px;
+  line-height: 24px;
+  color: #444;
+  display: block;
+  position: absolute;
+  top: 108px;
+  
+}
+
+.arrow:focus {
+  outline: none;
+}
+
+.arrow:hover {
+  background: #ccc;
+  cursor: pointer;
+}
+.carousel {
+  position: relative;
+  width: 398px;
+  padding: 10px 40px;
+  border: 1px solid #CCC;
+  border-radius: 15px;
+  background: #eee;
+}
+
+.carousel img {
+  width: 130px;
+  height: 130px;
+  /* делаем этот элемент блочным, чтобы убрать лишнее пространство вокруг картинок */
+  display: block;
+}
+
+.prev{
+  left: 12px;
+}
+.next{
+  right: 12px;
+}
+
+.gallery{
+  overflow: hidden;
+  width: 390px;
+}
+
+ul {
+  height: 130px;
+  width: 9999px;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0;
+  transition: margin-left 250ms;
+}
+
+ul img {
+  width: 130px;
+  height: 130px;
+  display: block; /* убираем пустое место вокруг картинок */
+}
+
+ul li {
+  display: inline-block; /* убираем пустое место между элементами списка */
+}
