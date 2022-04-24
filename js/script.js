@@ -38,3 +38,23 @@ var generateParenthesis = function (n) {
   backtrack(result, "", 0, 0, n);
   return result;
 };
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxSubArray = function (nums) {
+  let maxSum = nums[0];
+  let currSum = nums[0];
+
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[i] > nums[i] + currSum) currSum = nums[i];
+    else currSum += nums[i];
+    maxSum = Math.max(maxSum, currSum);
+  }
+  return maxSum;
+};
+
+let nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4];
+
+console.log(maxSubArray(nums));

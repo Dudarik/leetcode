@@ -130,3 +130,118 @@ var decode = (shortUrl) => {
  * Your functions will be called as such:
  * decode(encode(url));
  */
+
+/**1396. Design Underground System */
+/**https://leetcode.com/problems/design-underground-system/ */
+
+var UndergroundSystem = function () {
+  this.storePassangers = new Map();
+  this.storeTravelTime = new Map();
+};
+
+UndergroundSystem.prototype.hashStation = function (startStation, endStation) {
+  return `${startStation}-${endStation}`;
+};
+
+/**
+ * @param {number} id
+ * @param {string} stationName
+ * @param {number} t
+ * @return {void}
+ */
+UndergroundSystem.prototype.checkIn = function (id, stationName, t) {
+  this.storePassangers.set(id, [stationName, t]);
+};
+
+/**
+ * @param {number} id
+ * @param {string} stationName
+ * @param {number} t
+ * @return {void}
+ */
+UndergroundSystem.prototype.checkOut = function (id, stationName, t) {
+  let [startStation, startStationTime] = this.storePassangers.get(id);
+  this.storePassangers.delete(id);
+  const hashKey = this.hashStation(startStation, stationName);
+  let currTime = t - startStationTime,
+    cnt = 1;
+  if (this.storeTravelTime.has(hashKey)) {
+    currTime += this.storeTravelTime.get(hashKey)[0];
+    cnt += this.storeTravelTime.get(hashKey)[1];
+  }
+
+  this.storeTravelTime.set(hashKey, [currTime, cnt]);
+};
+
+/**
+ * @param {string} startStation
+ * @param {string} endStation
+ * @return {number}
+ */
+UndergroundSystem.prototype.getAverageTime = function (
+  startStation,
+  endStation
+) {
+  const hashKey = this.hashStation(startStation, endStation);
+  const [result, cnt] = this.storeTravelTime.get(hashKey);
+
+  return result / cnt;
+};
+
+/**
+ * Your UndergroundSystem object will be instantiated and called as such:
+ * var obj = new UndergroundSystem()
+ * obj.checkIn(id,stationName,t)
+ * obj.checkOut(id,stationName,t)
+ * var param_3 = obj.getAverageTime(startStation,endStation)
+ */
+
+// undergroundSystem.checkIn(45, "Leyton", 3);
+// undergroundSystem.checkIn(32, "Paradise", 8);
+// undergroundSystem.checkIn(27, "Leyton", 10);
+// undergroundSystem.checkOut(45, "Waterloo", 15); // Customer 45 "Leyton" -> "Waterloo" in 15-3 = 12
+// undergroundSystem.checkOut(27, "Waterloo", 20); // Customer 27 "Leyton" -> "Waterloo" in 20-10 = 10
+// undergroundSystem.checkOut(32, "Cambridge", 22); // Customer 32 "Paradise" -> "Cambridge" in 22-8 = 14
+
+// console.log(undergroundSystem.getAverageTime("Paradise", "Cambridge")); // return 14.00000. One trip "Paradise" -> "Cambridge", (14) / 1 = 14
+// console.log(undergroundSystem.getAverageTime("Leyton", "Waterloo")); // return 11.00000. Two trips "Leyton" -> "Waterloo", (10 + 12) / 2 = 11
+// undergroundSystem.checkIn(10, "Leyton", 24);
+// console.log(undergroundSystem.getAverageTime("Leyton", "Waterloo")); // return 11.00000
+// undergroundSystem.checkOut(10, "Waterloo", 38); // Customer 10 "Leyton" -> "Waterloo" in 38-24 = 14
+// console.log(undergroundSystem.getAverageTime("Leyton", "Waterloo")); // return 12.00000.
+const undergroundSystem = new UndergroundSystem();
+
+const stat = [
+  "checkIn",
+  "checkIn",
+  "checkIn",
+  "checkOut",
+  "checkOut",
+  "checkOut",
+  // "getAverageTime",
+  // "getAverageTime",
+  // "checkIn",
+  // "getAverageTime",
+  // "checkOut",
+  // "getAverageTime",
+];
+const exp = [
+  [45, "a", 3],
+  [32, "aa", 8],
+  [27, "a", 10],
+  [45, "ab", 15],
+  [27, "ab", 20],
+  [32, "b", 22],
+  // ["aa", "b"],
+  // ["a", "ab"],
+  // [10, "a", 24],
+  // ["a", "ab"],
+  // [10, "ab", 38],
+  // ["a", "ab"],
+];
+
+for (let i = 0; i < stat.length; i++) {
+  undergroundSystem[stat[i]](exp[i][0], exp[i][1], exp[i][2]);
+}
+
+console.log(undergroundSystem.getAverageTime("aa", "b"));
