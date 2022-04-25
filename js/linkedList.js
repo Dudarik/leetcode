@@ -209,3 +209,32 @@ var removeNthFromEnd = function (head, n) {
 // head = new ListNode(1);
 
 // console.log(removeNthFromEnd(head, 2));
+
+var deleteDuplicates = function (head) {
+  const listToArr = (head) => {
+    const result = [];
+    while (head) {
+      result.push(head.val);
+      head = head.next;
+    }
+    return result;
+  };
+
+  const arrToList = (arr) => {
+    let node = null;
+    while (arr.length) {
+      const n = new ListNode(arr.pop(), node);
+      node = n;
+    }
+    return node;
+  };
+
+  return arrToList(Array.from(new Set(listToArr(head))));
+};
+
+let head = new ListNode(
+  1,
+  new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(3))))
+);
+
+// console.log(deleteDuplicates(head));
