@@ -55,6 +55,60 @@ var maxSubArray = function (nums) {
   return maxSum;
 };
 
-let nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4];
+// let nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4];
 
-console.log(maxSubArray(nums));
+// console.log(maxSubArray(nums));
+
+/**284. Peeking Iterator */
+/**https://leetcode.com/problems/peeking-iterator/ */
+
+/**
+ * // This is the Iterator's API interface.
+ * // You should not implement it, or speculate about its implementation.
+ * function Iterator() {
+ *    @ return {number}
+ *    this.next = function() { // return the next number of the iterator
+ *       ...
+ *    };
+ *
+ *    @return {boolean}
+ *    this.hasNext = function() { // return true if it still has numbers
+ *       ...
+ *    };
+ * };
+ */
+
+/**
+ * @param {Iterator} iterator
+ */
+var PeekingIterator = function (iterator) {
+  this.iterator = iterator;
+  this.current = null;
+};
+
+/**
+ * @return {number}
+ */
+PeekingIterator.prototype.peek = function () {
+  if (this.current === null) this.current = this.iterator.next();
+  return this.current;
+};
+
+/**
+ * @return {number}
+ */
+PeekingIterator.prototype.next = function () {
+  if (this.current !== null) {
+    const t = this.current;
+    this.current = null;
+    return t;
+  }
+  return this.iterator.next();
+};
+
+/**
+ * @return {boolean}
+ */
+PeekingIterator.prototype.hasNext = function () {
+  return this.current !== null || this.iterator.hasNext();
+};

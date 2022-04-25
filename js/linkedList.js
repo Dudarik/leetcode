@@ -100,8 +100,8 @@ var mergeTwoLists = function (list1, list2) {
  * @return {ListNode}
  */
 
-let list1 = new ListNode(2, new ListNode(4, new ListNode(3)));
-let list2 = new ListNode(5, new ListNode(6, new ListNode(4)));
+// let list1 = new ListNode(2, new ListNode(4, new ListNode(3)));
+// let list2 = new ListNode(5, new ListNode(6, new ListNode(4)));
 
 var addTwoNumbers = function (l1, l2) {
   if (!l1) return l2;
@@ -142,17 +142,70 @@ var addTwoNumbers = function (l1, l2) {
   return result.next;
 };
 
-let l1 = new ListNode(
-  9,
-  new ListNode(
-    9,
-    new ListNode(
-      9,
-      new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9))))
-    )
-  )
-);
+// let l1 = new ListNode(
+//   9,
+//   new ListNode(
+//     9,
+//     new ListNode(
+//       9,
+//       new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9))))
+//     )
+//   )
+// );
 
-let l2 = new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9))));
+// let l2 = new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9))));
 
-console.log(addTwoNumbers(l1, l2));
+// console.log(addTwoNumbers(l1, l2));
+
+/**19. Remove Nth Node From End of List */
+/**https://leetcode.com/problems/remove-nth-node-from-end-of-list/ */
+
+var removeNthFromEnd = function (head, n) {
+  // if (!head) return null;
+  // if (!head.next && n === 1) return null;
+  let count = 0;
+  let current = head;
+  const dict = {};
+
+  while (current) {
+    dict[++count] = current;
+    current = current.next;
+  }
+  console.log(dict);
+
+  if (count == n) return head.next;
+  dict[count - n].next = dict[count - n + 1].next;
+  return head;
+};
+
+// const listToArr = (node) => {
+//   const arr = [];
+//   while (node) {
+//       arr.push(node.val);
+//       node = node.next;
+//   }
+//   return arr;
+// }
+
+// const arrToList = (arr) => {
+//   let node = null;
+//   while (arr.length) {
+//       const n = new ListNode(arr.pop(), node);
+//       node = n;
+//   }
+//   return node;
+// }
+
+// var removeNthFromEnd = function(head, n) {
+//   const arr = listToArr(head);
+//   arr.splice(arr.length - n, 1);
+//   return arrToList(arr);
+// };
+
+// let head = new ListNode(
+//   1,
+//   new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5))))
+// );
+// head = new ListNode(1);
+
+// console.log(removeNthFromEnd(head, 2));
