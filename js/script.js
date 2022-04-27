@@ -112,3 +112,14 @@ PeekingIterator.prototype.next = function () {
 PeekingIterator.prototype.hasNext = function () {
   return this.current !== null || this.iterator.hasNext();
 };
+
+/**58. Length of Last Word */
+/**https://leetcode.com/problems/length-of-last-word/ */
+
+var lengthOfLastWord = function (s) {
+  const sprArr = s.trim().split(" ");
+  return sprArr[sprArr.length - 1].length;
+};
+
+let s = "as";
+console.log(lengthOfLastWord(s));
