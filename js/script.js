@@ -121,5 +121,80 @@ var lengthOfLastWord = function (s) {
   return sprArr[sprArr.length - 1].length;
 };
 
-let s = "as";
-console.log(lengthOfLastWord(s));
+// let s = "a";
+// console.log(lengthOfLastWord(s));
+
+/**11. Container With Most Water */
+/**https://leetcode.com/problems/container-with-most-water/ */
+
+var maxArea = function (height) {
+  let left = 0,
+    right = height.length - 1,
+    result = 0;
+  while (left < right) {
+    let diff = right - left;
+    result = Math.max(result, Math.min(height[left], height[right]) * diff);
+    if (height[left] >= height[right]) {
+      right--;
+    } else {
+      left++;
+    }
+  }
+  return result;
+};
+
+// let height = [1, 8, 6, 2, 5, 4, 8, 20, 7];
+// // height = [1, 1];
+
+// console.log(maxArea(height));
+
+/**18. 4Sum */
+/**https://leetcode.com/problems/4sum/ */
+
+var fourSum = function (nums, target) {
+  if (nums.length < 4) return [];
+
+  nums.sort((a, b) => a - b);
+
+  const hashMap = new Map();
+
+  const hashRes = (i1, i2, i3, i4) => `${i1}-${i2}-${i3}-${i4}`;
+  // debugger;
+  for (let i = 0; i < nums.length - 3; i++) {
+    if (i != 0 && nums[i] == nums[i - 1]) continue;
+
+    for (let j = i + 1; j < nums.length - 2; j++) {
+      let left = j + 1,
+        right = nums.length - 1;
+      while (left < right) {
+        const sum = nums[i] + nums[j] + nums[left] + nums[right];
+
+        if (sum === target) {
+          hashMap.set(hashRes(nums[i], nums[j], nums[left], nums[right]), [
+            nums[i],
+            nums[j],
+            nums[left],
+            nums[right],
+          ]);
+
+          left++;
+        } else if (sum > target) {
+          right--;
+        } else {
+          left++;
+        }
+      }
+    }
+  }
+
+  return Array.from(hashMap.values());
+};
+
+// let nums = [1, 0, -1, 0, -2, 2],
+//   target = 0;
+// let nums = [2, 2, 2, 2, 2],
+//   target = 8;
+
+let nums = [1, -5, 3, -3, 4, 5, 2],
+  target = 14;
+console.log(fourSum(nums, target));
