@@ -9,6 +9,6 @@ var sortArrayByParity = function (nums) {
   return nums.sort((a) => (a % 2 ? 1 : -1));
 };
 
-let nums = [3, 1, 2, 4];
-nums = [0];
-console.log(sortArrayByParity(nums));
+// let nums = [3, 1, 2, 4];
+// nums = [0];
+// console.log(sortArrayByParity(nums));
