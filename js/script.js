@@ -195,6 +195,29 @@ var fourSum = function (nums, target) {
 // let nums = [2, 2, 2, 2, 2],
 //   target = 8;
 
-let nums = [1, -5, 3, -3, 4, 5, 2],
-  target = 14;
-console.log(fourSum(nums, target));
+// let nums = [1, -5, 3, -3, 4, 5, 2],
+//   target = 14;
+// console.log(fourSum(nums, target));
+
+/**66. Plus One */
+/**https://leetcode.com/problems/plus-one/ */
+
+var plusOne = function (digits) {
+  for (let i = digits.length - 1; i >= 0; i--) {
+    if (digits[i] < 9) {
+      digits[i] += 1;
+      return digits;
+    } else {
+      digits[i] = 0;
+    }
+  }
+
+  digits.unshift(1);
+  return digits;
+};
+
+let digits = [1, 2, 3];
+digits = [4, 3, 2, 1];
+digits = [9];
+
+console.log(plusOne(digits));

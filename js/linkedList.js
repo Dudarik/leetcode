@@ -238,3 +238,54 @@ let head = new ListNode(
 );
 
 // console.log(deleteDuplicates(head));
+
+/**23. Merge k Sorted Lists */
+/**https://leetcode.com/problems/merge-k-sorted-lists/ */
+
+/**
+ * @param {ListNode[]} lists
+ * @return {ListNode}
+ */
+var mergeKLists = function (lists) {
+  if (lists.length === 0 || lists === null) null;
+  if (lists.length === 1) return lists[0];
+
+  const listToArr = (lists) => {
+    const result = [];
+    while (lists) {
+      result.push(lists.val);
+      lists = lists.next;
+    }
+    return result;
+  };
+
+  const arrToList = (arr) => {
+    let node = null;
+    while (arr.length) {
+      const n = new ListNode(arr.pop(), node);
+      node = n;
+    }
+    return node;
+  };
+  let tArr = [];
+
+  for (let i = 0; i < lists.length; i++) {
+    tArr.push(listToArr(lists[i]));
+  }
+
+  return arrToList(tArr.flat(1).sort((a, b) => a - b));
+};
+// let lists = [
+//   new ListNode(1, new ListNode(4, new ListNode(5))),
+//   new ListNode(1, new ListNode(3, new ListNode(4))),
+//   new ListNode(2, new ListNode(6)),
+// ];
+
+// lists = [new ListNode()];
+// // const lists = [
+// //   [1, 4, 5],
+// //   [1, 3, 4],
+// //   [2, 6],
+// // ];
+
+// console.log(mergeKLists(lists));
