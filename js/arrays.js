@@ -38,7 +38,7 @@ var findUnsortedSubarray = function (nums) {
     : high - low + 1;
 };
 
-let nums = [2, 6, 4, 8, 10, 9, 15];
-nums = [1];
-// nums = [1, 2, 3, 4];
-console.log(findUnsortedSubarray(nums));
+// let nums = [2, 6, 4, 8, 10, 9, 15];
+// nums = [1];
+//  nums = [1, 2, 3, 4];
+// console.log(findUnsortedSubarray(nums));
