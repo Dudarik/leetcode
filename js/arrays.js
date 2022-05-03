@@ -21,7 +21,7 @@ var sortArrayByParity = function (nums) {
  * @return {number}
  */
 var findUnsortedSubarray = function (nums) {
-  const tArr = nums.slice().sort((a, b) => a - b);
+  const tArr = [...nums].sort((a, b) => a - b);
 
   let low = Number.MAX_SAFE_INTEGER,
     high = Number.MIN_SAFE_INTEGER;
@@ -38,7 +38,7 @@ var findUnsortedSubarray = function (nums) {
     : high - low + 1;
 };
 
-// let nums = [2, 6, 4, 8, 10, 9, 15];
-// nums = [1];
+let nums = [2, 6, 4, 8, 10, 9, 15];
+nums = [1];
 // nums = [1, 2, 3, 4];
-// console.log(findUnsortedSubarray(nums));
+console.log(findUnsortedSubarray(nums));
