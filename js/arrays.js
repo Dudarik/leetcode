@@ -42,3 +42,37 @@ var findUnsortedSubarray = function (nums) {
 // nums = [1];
 //  nums = [1, 2, 3, 4];
 // console.log(findUnsortedSubarray(nums));
+
+/**1679. Max Number of K-Sum Pairs */
+/**https://leetcode.com/problems/max-number-of-k-sum-pairs/ */
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var maxOperations = function (nums, k) {
+  nums.sort((a, b) => a - b);
+
+  let left = 0,
+    right = nums.length - 1,
+    count = 0;
+
+  while (left < right) {
+    if (nums[left] + nums[right] === k) {
+      left++;
+      right--;
+      count++;
+    } else if (nums[left] + nums[right] > k) right--;
+    else left++;
+  }
+  return count;
+};
+
+let nums = [1, 2, 3, 4];
+k = 5;
+
+// nums = [3, 1, 3, 4, 3];
+// k = 6;
+
+// console.log(maxOperations(nums, k));

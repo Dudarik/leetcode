@@ -219,5 +219,3 @@ var plusOne = function (digits) {
 let digits = [1, 2, 3];
 digits = [4, 3, 2, 1];
 digits = [9];
-
-console.log(plusOne(digits));
