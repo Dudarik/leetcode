@@ -220,6 +220,7 @@ var plusOne = function (digits) {
 // digits = [4, 3, 2, 1];
 // digits = [9];
 
+<<<<<<< HEAD
 /**67. Add Binary */
 /**https://leetcode.com/problems/add-binary/ */
 
@@ -236,3 +237,42 @@ let a = "1010",
   b = "1011";
 
 // console.log(addBinary(a, b));
+=======
+/**216. Combination Sum III */
+/**https://leetcode.com/problems/combination-sum-iii/ */
+
+/**
+ * @param {number} k
+ * @param {number} n
+ * @return {number[][]}
+ */
+function combinationSum3(count, target) {
+  let result = [];
+  let container = [];
+
+  function dfs(idx, sum) {
+    // if (idx > 10) {
+    //   return;
+    // }
+    if (sum < 0) {
+      return;
+    }
+    if (sum === 0) {
+      if (container.length === count) {
+        result.push([...container]);
+      }
+      return;
+    }
+
+    for (let i = idx; i <= 9; i++) {
+      container.push(i);
+      dfs(i + 1, sum - i);
+      container.pop();
+    }
+  }
+
+  dfs(1, target);
+
+  return result;
+}
+>>>>>>> d3f432c2fa01d59ea3134c830cb0f4cef9a3d19e
