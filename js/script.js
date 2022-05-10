@@ -216,6 +216,44 @@ var plusOne = function (digits) {
   return digits;
 };
 
-let digits = [1, 2, 3];
-digits = [4, 3, 2, 1];
-digits = [9];
+// let digits = [1, 2, 3];
+// digits = [4, 3, 2, 1];
+// digits = [9];
+
+/**216. Combination Sum III */
+/**https://leetcode.com/problems/combination-sum-iii/ */
+
+/**
+ * @param {number} k
+ * @param {number} n
+ * @return {number[][]}
+ */
+function combinationSum3(count, target) {
+  let result = [];
+  let container = [];
+
+  function dfs(idx, sum) {
+    // if (idx > 10) {
+    //   return;
+    // }
+    if (sum < 0) {
+      return;
+    }
+    if (sum === 0) {
+      if (container.length === count) {
+        result.push([...container]);
+      }
+      return;
+    }
+
+    for (let i = idx; i <= 9; i++) {
+      container.push(i);
+      dfs(i + 1, sum - i);
+      container.pop();
+    }
+  }
+
+  dfs(1, target);
+
+  return result;
+}
