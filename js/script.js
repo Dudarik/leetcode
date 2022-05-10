@@ -216,6 +216,23 @@ var plusOne = function (digits) {
   return digits;
 };
 
-let digits = [1, 2, 3];
-digits = [4, 3, 2, 1];
-digits = [9];
+// let digits = [1, 2, 3];
+// digits = [4, 3, 2, 1];
+// digits = [9];
+
+/**67. Add Binary */
+/**https://leetcode.com/problems/add-binary/ */
+
+/**
+ * @param {string} a
+ * @param {string} b
+ * @return {string}
+ */
+var addBinary = function (a, b) {
+  return (BigInt("0b" + a) + BigInt("0b" + b)).toString(2);
+};
+
+let a = "1010",
+  b = "1011";
+
+// console.log(addBinary(a, b));
