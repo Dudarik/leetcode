@@ -92,4 +92,4 @@ var countVowelStrings = function (n) {
   return sum;
 };
 
-console.log(countVowelStrings(2));
+// console.log(countVowelStrings(2));

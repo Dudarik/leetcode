@@ -69,10 +69,46 @@ var maxOperations = function (nums, k) {
   return count;
 };
 
-let nums = [1, 2, 3, 4];
-k = 5;
+// let nums = [1, 2, 3, 4];
+// k = 5;
 
 // nums = [3, 1, 3, 4, 3];
 // k = 6;
 
 // console.log(maxOperations(nums, k));
+
+/**47. Permutations II */
+/**https://leetcode.com/problems/permutations-ii/ */
+
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var permuteUnique = function (nums) {
+  let res = [];
+
+  permutations(nums, [], res);
+  return res;
+};
+
+function permutations(nums, set, res) {
+  let visited = {};
+
+  for (let i = 0; i < nums.length; i++) {
+    visited[nums[i]] = false;
+  }
+
+  if (!nums.length) {
+    res.push(set);
+    return;
+  }
+
+  for (let k = 0; k < nums.length; k++) {
+    let numsCopy = [...nums];
+    let num = numsCopy.splice(k, 1)[0];
+    if (!visited[num]) {
+      permutations(numsCopy, [...set, num], res);
+      visited[num] = true;
+    }
+  }
+}
