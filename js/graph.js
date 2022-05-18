@@ -172,3 +172,48 @@ class UnionFind {
 
 // console.log(smallestStringWithSwaps(s, pairs));
 // Not me
+
+/**1192. Critical Connections in a Network */
+/**https://leetcode.com/problems/critical-connections-in-a-network/ */
+
+/**
+ * @param {number} n
+ * @param {number[][]} connections
+ * @return {number[][]}
+ */
+var criticalConnections = function (n, connections) {
+  const adjacencyList = Array(n)
+    .fill(0)
+    .map(() => []);
+  for (const [u, v] of connections) {
+    adjacencyList[u].push(v);
+    adjacencyList[v].push(u);
+  }
+
+  const discoveryTime = Array(n);
+  const result = [];
+
+  const dfs = (node, adjacencyList, discoveryTime, parent, time, result) => {
+    discoveryTime[node] = [time, time];
+
+    for (const child of adjacencyList[node]) {
+      if (child === parent) continue;
+
+      const childBackEdgeDiscoveryTime = discoveryTime[child]
+        ? discoveryTime[child][1]
+        : dfs(child, adjacencyList, discoveryTime, node, time + 1, result);
+      if (discoveryTime[node][0] < childBackEdgeDiscoveryTime)
+        result.push([node, child]);
+      discoveryTime[node][1] = Math.min(
+        discoveryTime[node][1],
+        childBackEdgeDiscoveryTime
+      );
+    }
+
+    return discoveryTime[node][1];
+  };
+
+  dfs(connections[0][0], adjacencyList, discoveryTime, null, 1, result);
+
+  return result;
+};
