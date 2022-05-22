@@ -93,3 +93,34 @@ var countVowelStrings = function (n) {
 };
 
 // console.log(countVowelStrings(2));
+
+/**647. Palindromic Substrings */
+/**https://leetcode.com/problems/palindromic-substrings/ */
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var countSubstrings = function (s) {
+  let result = s.length;
+
+  const isPalindrome = (s) => {
+    let left = 0,
+      right = s.length - 1;
+
+    while (left < right) {
+      if (s[left++] !== s[right--]) return false;
+    }
+    return true;
+  };
+
+  for (let i = 0; i < s.length; i++) {
+    for (let j = i + 1; j < s.length; j++) {
+      if (isPalindrome(s.slice(i, j + 1))) result += 1;
+    }
+  }
+
+  return result;
+};
+
+console.log(countSubstrings("aabaa"));
