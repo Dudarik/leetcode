@@ -153,8 +153,43 @@ var findMaxForm = function (strs, m, n) {
       }
     }
   }
-  console.log(dp);
+  // console.log(dp);
   return dp[m][n];
 };
 
-console.log(findMaxForm(["10", "0001", "111001", "1", "0"], 5, 3));
+// console.log(findMaxForm(["10", "0001", "111001", "1", "0"], 5, 3));
+
+/**32. Longest Valid Parentheses */
+/**https://leetcode.com/problems/longest-valid-parentheses/ */
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var longestValidParentheses = function (s) {
+  let maxCount = 0;
+  const stack = [-1];
+
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === "(") {
+      stack.push(i);
+    } else {
+      stack.pop();
+      if (!stack.length) {
+        stack.push(i);
+      } else {
+        maxCount = Math.max(maxCount, i - stack[stack.length - 1]);
+      }
+    }
+  }
+
+  return maxCount;
+};
+
+// let s = ")()())";
+// s = "(((()))";
+// s = "((()))()()))";
+// s = "()(()";
+// // s = ")()())()()(";
+
+// console.log(longestValidParentheses(s));
