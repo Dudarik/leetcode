@@ -123,4 +123,38 @@ var countSubstrings = function (s) {
   return result;
 };
 
-console.log(countSubstrings("aabaa"));
+// console.log(countSubstrings("aabaa"));
+
+/**474. Ones and Zeroes */
+/**https://leetcode.com/problems/ones-and-zeroes/ */
+
+/**
+ * @param {string[]} strs
+ * @param {number} m
+ * @param {number} n
+ * @return {number}
+ */
+var findMaxForm = function (strs, m, n) {
+  let dp = new Array(m + 1).fill(0).map(() => new Array(n + 1).fill(0));
+
+  for (const str of strs) {
+    let zero = 0,
+      one = 0;
+
+    for (const currChr of str) {
+      currChr === "0" ? zero++ : one++;
+    }
+
+    for (let i = m; i >= zero; i--) {
+      for (let j = n; j >= one; j--) {
+        // debugger;
+        // console.log(dp);
+        dp[i][j] = Math.max(dp[i][j], dp[i - zero][j - one] + 1);
+      }
+    }
+  }
+  console.log(dp);
+  return dp[m][n];
+};
+
+console.log(findMaxForm(["10", "0001", "111001", "1", "0"], 5, 3));
