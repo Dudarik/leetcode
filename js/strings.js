@@ -193,3 +193,41 @@ var longestValidParentheses = function (s) {
 // // s = ")()())()()(";
 
 // console.log(longestValidParentheses(s));
+
+/**191. Number of 1 Bits */
+/**https://leetcode.com/problems/number-of-1-bits/ */
+
+/**
+ * @param {number} n - a positive integer
+ * @return {number}
+ */
+var hammingWeight = function (n) {
+  let b0 = (n >> 0) & 0b01010101010101010101010101010101;
+  let b1 = (n >> 1) & 0b01010101010101010101010101010101;
+  let c = b0 + b1;
+
+  let d0 = (c >> 0) & 0b00110011001100110011001100110011;
+  let d2 = (c >> 2) & 0b00110011001100110011001100110011;
+  let e = d0 + d2;
+
+  let f0 = (e >> 0) & 0b00001111000011110000111100001111;
+  let f4 = (e >> 4) & 0b00001111000011110000111100001111;
+  let g = f0 + f4;
+
+  let h0 = (g >> 0) & 0b00000000111111110000000011111111;
+  let h8 = (g >> 8) & 0b00000000111111110000000011111111;
+  let i = h0 + h8;
+
+  let j0 = (i >> 0) & 0b00000000000000001111111111111111;
+  let j16 = (i >> 16) & 0b00000000000000001111111111111111;
+  let k = j0 + j16;
+
+  return k;
+};
+
+let n = 0b00000000000000000000000000001011;
+// n = 0b11111111111111111111111111111101;
+// n = 0b0110110010111010;
+
+n = 00000000000000000000000010000000;
+console.log(hammingWeight(n));
