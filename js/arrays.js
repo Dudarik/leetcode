@@ -156,3 +156,21 @@ var maxEnvelopes = function (envelopes) {
 
   return tails.length;
 };
+
+/**268. Missing Number */
+/**https://leetcode.com/problems/missing-number/ */
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var missingNumber = function (nums) {
+  return (
+    (nums.length * (nums.length + 1)) / 2 -
+    nums.reduce((sum, curr) => sum + curr)
+  );
+};
+
+// let nums = [9, 6, 4, 2, 3, 5, 7, 0, 1];
+// // nums = [3, 0, 1];
+// console.log(missingNumber(nums));
