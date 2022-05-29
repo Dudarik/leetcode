@@ -225,9 +225,48 @@ var hammingWeight = function (n) {
   return k;
 };
 
-let n = 0b00000000000000000000000000001011;
-// n = 0b11111111111111111111111111111101;
-// n = 0b0110110010111010;
+// let n = 0b00000000000000000000000000001011;
+// // n = 0b11111111111111111111111111111101;
+// // n = 0b0110110010111010;
 
-n = 00000000000000000000000010000000;
-console.log(hammingWeight(n));
+// n = 00000000000000000000000010000000;
+// console.log(hammingWeight(n));
+
+/**318. Maximum Product of Word Lengths */
+/**https://leetcode.com/problems/maximum-product-of-word-lengths/ */
+
+/**
+ * @param {string[]} words
+ * @return {number}
+ */
+var maxProduct = function (words) {
+  if (words.length < 2) return 0;
+
+  const code = 97; //charCode 'a'
+
+  const wordMask = words.map((word) => {
+    let bitMask = 0;
+
+    for (let i = 0; i < word.length; i++) {
+      bitMask = bitMask | (1 << (word[i].charCodeAt(0) - code));
+    }
+    return bitMask;
+  });
+
+  let max = 0;
+
+  for (let i = 0; i < words.length - 1; i++) {
+    for (let j = i + 1; j < words.length; j++) {
+      if ((wordMask[i] & wordMask[j]) === 0) {
+        max = Math.max(max, words[i].length * words[j].length);
+      }
+    }
+  }
+  return max;
+};
+
+let words = ["abcw", "baz", "foo", "bar", "xtfn", "abcdef"];
+words = ["a", "ab", "abc", "d", "cd", "bcd", "abcd"];
+// words = ["a", "aa", "aaa", "aaaa"];
+
+console.log(maxProduct(words));
