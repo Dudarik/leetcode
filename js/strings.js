@@ -265,8 +265,8 @@ var maxProduct = function (words) {
   return max;
 };
 
-let words = ["abcw", "baz", "foo", "bar", "xtfn", "abcdef"];
-words = ["a", "ab", "abc", "d", "cd", "bcd", "abcd"];
-// words = ["a", "aa", "aaa", "aaaa"];
+// let words = ["abcw", "baz", "foo", "bar", "xtfn", "abcdef"];
+// words = ["a", "ab", "abc", "d", "cd", "bcd", "abcd"];
+// // words = ["a", "aa", "aaa", "aaaa"];
 
-console.log(maxProduct(words));
+// console.log(maxProduct(words));
