@@ -246,8 +246,8 @@ var hasAllCodes = function (s, k) {
   return store.size === Math.pow(2, k);
 };
 
-let s = "00110110",
-  k = 2;
-s = "00110";
+// let s = "00110110",
+//   k = 2;
+// s = "00110";
 
-console.log(hasAllCodes(s, k));
+// console.log(hasAllCodes(s, k));
