@@ -226,47 +226,28 @@ var hammingWeight = function (n) {
 };
 
 // let n = 0b00000000000000000000000000001011;
-// // n = 0b11111111111111111111111111111101;
-// // n = 0b0110110010111010;
+// n = 0b11111111111111111111111111111101;
+// n = 0b0110110010111010;
 
 // n = 00000000000000000000000010000000;
 // console.log(hammingWeight(n));
 
-/**318. Maximum Product of Word Lengths */
-/**https://leetcode.com/problems/maximum-product-of-word-lengths/ */
+/**1461. Check If a String Contains All Binary Codes of Size K */
+/**https://leetcode.com/problems/check-if-a-string-contains-all-binary-codes-of-size-k/ */
 
-/**
- * @param {string[]} words
- * @return {number}
- */
-var maxProduct = function (words) {
-  if (words.length < 2) return 0;
+var hasAllCodes = function (s, k) {
+  if (s.length < k) return false;
 
-  const code = 97; //charCode 'a'
+  const store = new Set();
 
-  const wordMask = words.map((word) => {
-    let bitMask = 0;
-
-    for (let i = 0; i < word.length; i++) {
-      bitMask = bitMask | (1 << (word[i].charCodeAt(0) - code));
-    }
-    return bitMask;
-  });
-
-  let max = 0;
-
-  for (let i = 0; i < words.length - 1; i++) {
-    for (let j = i + 1; j < words.length; j++) {
-      if ((wordMask[i] & wordMask[j]) === 0) {
-        max = Math.max(max, words[i].length * words[j].length);
-      }
-    }
+  for (let i = 0; i <= s.length - k; i++) {
+    store.add(s.slice(i, i + k));
   }
-  return max;
+  return store.size === Math.pow(2, k);
 };
 
-// let words = ["abcw", "baz", "foo", "bar", "xtfn", "abcdef"];
-// words = ["a", "ab", "abc", "d", "cd", "bcd", "abcd"];
-// // words = ["a", "aa", "aaa", "aaaa"];
+let s = "00110110",
+  k = 2;
+s = "00110";
 
-// console.log(maxProduct(words));
+console.log(hasAllCodes(s, k));
