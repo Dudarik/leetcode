@@ -174,3 +174,19 @@ var missingNumber = function (nums) {
 // let nums = [9, 6, 4, 2, 3, 5, 7, 0, 1];
 // // nums = [3, 0, 1];
 // console.log(missingNumber(nums));
+
+/**1480. Running Sum of 1d Array */
+/**https://leetcode.com/problems/running-sum-of-1d-array/ */
+
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var runningSum = function (nums) {
+  for (let i = 1; i < nums.length; i++) nums[i] += nums[i - 1];
+
+  return nums;
+};
+
+// let nums = [1, 2, 3, 4];
+// console.log(runningSum(nums));
