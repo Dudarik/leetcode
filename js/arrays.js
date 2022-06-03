@@ -190,3 +190,96 @@ var runningSum = function (nums) {
 
 // let nums = [1, 2, 3, 4];
 // console.log(runningSum(nums));
+
+/**867. Transpose Matrix */
+/**https://leetcode.com/problems/transpose-matrix/ */
+
+/**
+ * @param {number[][]} matrix
+ * @return {number[][]}
+ */
+var transpose = function (matrix) {
+  const resultMatrix = [];
+  for (let i = 0; i < matrix[0].length; i++) {
+    resultMatrix.push([]);
+    for (let j = 0; j < matrix.length; j++) {
+      resultMatrix[i].push(matrix[j][i]);
+    }
+  }
+  return resultMatrix;
+};
+// let matrix = [
+//   [1, 2, 3],
+//   [4, 5, 6],
+//   [7, 8, 9],
+// ];
+
+// matrix = [
+//   [1, 2, 3],
+//   [4, 5, 6],
+// ];
+
+// console.table(transpose(matrix));
+
+/**304. Range Sum Query 2D - Immutable */
+/**https://leetcode.com/problems/range-sum-query-2d-immutable/ */
+
+/**
+ * @param {number[][]} matrix
+ */
+var NumMatrix = function (matrix) {
+  this.store = matrix;
+};
+
+/**
+ * @param {number} row1
+ * @param {number} col1
+ * @param {number} row2
+ * @param {number} col2
+ * @return {number}
+ */
+NumMatrix.prototype.sumRegion = function (row1, col1, row2, col2) {
+  let result = 0;
+  for (let i = row1; i <= row2; i++) {
+    for (let j = col1; j <= col2; j++) {
+      result += this.store[i][j];
+    }
+  }
+  return result;
+};
+
+const NM = function (matrix) {
+  let m = matrix.length;
+  let n = matrix[0].length;
+  this.arr = Array.from({ length: m + 1 }).map((item) =>
+    new Array(n + 1).fill(0)
+  );
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+      this.arr[i + 1][j + 1] =
+        this.arr[i][j + 1] + this.arr[i + 1][j] + matrix[i][j] - this.arr[i][j];
+    }
+  }
+  console.log(this.arr);
+};
+
+NM.prototype.sumRegion = function (row1, col1, row2, col2) {
+  return (
+    this.arr[row2 + 1][col2 + 1] +
+    this.arr[row1][col1] -
+    this.arr[row1][col2 + 1] -
+    this.arr[row2 + 1][col1]
+  );
+};
+
+// const numMatrix = new NM([
+//   [3, 0, 1, 4, 2],
+//   [5, 6, 3, 2, 1],
+//   [1, 2, 0, 1, 5],
+//   [4, 1, 0, 1, 7],
+//   [1, 0, 3, 0, 5],
+// ]);
+
+// console.log(numMatrix.sumRegion(2, 1, 4, 3));
+// console.log(numMatrix.sumRegion(1, 1, 2, 2));
+// console.log(numMatrix.sumRegion(1, 2, 2, 4));
