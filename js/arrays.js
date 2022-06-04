@@ -283,3 +283,44 @@ NM.prototype.sumRegion = function (row1, col1, row2, col2) {
 // console.log(numMatrix.sumRegion(2, 1, 4, 3));
 // console.log(numMatrix.sumRegion(1, 1, 2, 2));
 // console.log(numMatrix.sumRegion(1, 2, 2, 4));
+
+/**51. N-Queens */
+/**https://leetcode.com/problems/n-queens/ */
+
+/**
+ * @param {number} n
+ * @return {string[][]}
+ *
+ */
+var solveNQueens = function (n) {
+  const res = [];
+  const board = new Array(n).fill(0).map(() => new Array(n).fill("."));
+  const backtrack = (row) => {
+    if (row == board.length) {
+      res.push(board.map((row) => row.join("")));
+      return;
+    }
+    for (let col = 0; col < n; col++) {
+      if (!isValid(row, col)) {
+        continue;
+      }
+      board[row][col] = "Q";
+      backtrack(row + 1);
+      board[row][col] = ".";
+    }
+  };
+  const isValid = (row, col) => {
+    for (let i = 0; i < n; i++) {
+      if (board[i][col] == "Q") return false;
+    }
+    for (let i = row - 1, j = col + 1; i >= 0 && j < n; i--, j++) {
+      if (board[i][j] == "Q") return false;
+    }
+    for (let i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
+      if (board[i][j] == "Q") return false;
+    }
+    return true;
+  };
+  backtrack(0);
+  return res;
+};
