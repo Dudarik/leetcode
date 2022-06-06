@@ -289,3 +289,43 @@ var mergeKLists = function (lists) {
 // // ];
 
 // console.log(mergeKLists(lists));
+
+/**160. Intersection of Two Linked Lists */
+/**https://leetcode.com/problems/intersection-of-two-linked-lists/ */
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+// function ListNode(val) {
+//   this.val = val;
+//   this.next = null;
+// }
+
+/**
+ * @param {ListNode} headA
+ * @param {ListNode} headB
+ * @return {ListNode}
+ */
+var getIntersectionNode = function (headA, headB) {
+  if (headA == null || headB == null) return null;
+  let tHeadA = headA,
+    tHeadB = headB;
+
+  while (tHeadA !== tHeadB) {
+    tHeadA = tHeadA === null ? headA : tHeadA.next;
+    tHeadB = tHeadB === null ? headB : tHeadB.next;
+  }
+  return tHeadA;
+};
+
+// const intersect = new ListNode(8, new ListNode(4, new ListNode(5)));
+
+// const listA = new ListNode(4, new ListNode(1, intersect));
+// const listB = new ListNode(5, new ListNode(6, new ListNode(1, intersect)));
+
+// console.log(getIntersectionNode(listA, listB));
