@@ -251,3 +251,30 @@ var hasAllCodes = function (s, k) {
 // s = "00110";
 
 // console.log(hasAllCodes(s, k));
+
+/**1332. Remove Palindromic Subsequences */
+/**https://leetcode.com/problems/remove-palindromic-subsequences/ */
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var removePalindromeSub = function (s) {
+  let pLeft = 0,
+    pRight = s.length - 1;
+  while (pLeft < pRight) {
+    if (s[pLeft] == s[pRight]) {
+      pLeft++;
+      pRight--;
+    } else {
+      return 2;
+    }
+  }
+  return 1;
+};
+
+let s = "baabbab"; // return 2
+//s = "abb"; //return 2
+// s = "ababa"; //return 1
+
+console.log(removePalindromeSub(s));
