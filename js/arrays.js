@@ -324,3 +324,31 @@ var solveNQueens = function (n) {
   backtrack(0);
   return res;
 };
+
+/**167. Two Sum II - Input Array Is Sorted */
+/**https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/ */
+
+/**
+ * @param {number[]} numbers
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function (numbers, target) {
+  let id1 = 0,
+    id2 = numbers.length - 1;
+
+  while (id1 < id2) {
+    const sum = numbers[id1] + numbers[id2];
+    if (sum === target) return [id1, id2];
+
+    sum < target ? id1++ : id2--;
+  }
+};
+
+let numbers = [2, 7, 11, 15],
+  target = 9;
+
+(numbers = [2, 3, 4]), (target = 6);
+
+(numbers = [-1, 0]), (target = -1);
+console.log(twoSum(numbers, target));
