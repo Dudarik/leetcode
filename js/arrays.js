@@ -379,7 +379,7 @@ var minOperations = function (nums, x) {
   while (i < len) {
     tSum += nums[i];
     map.set(tSum, i);
-    console.log(map, tSum, total, x);
+    // console.log(map, tSum, total, x);
     if (map.has(tSum - total + x)) {
       result = Math.max(result, i - map.get(tSum - total + x));
     }
@@ -388,11 +388,11 @@ var minOperations = function (nums, x) {
   return result === -1 ? -1 : len - result;
 };
 
-let nums = [1, 1, 4, 2, 3],
-  x = 5; //return 2
+// let nums = [1, 1, 4, 2, 3],
+//   x = 5; //return 2
 
-(nums = [5, 6, 7, 8, 9]), (x = 4); //return -1
+// (nums = [5, 6, 7, 8, 9]), (x = 4); //return -1
 
-(nums = [3, 2, 20, 1, 1, 3]), (x = 10); // return 5
+// (nums = [3, 2, 20, 1, 1, 3]), (x = 10); // return 5
 
-console.log(minOperations(nums, x));
+// console.log(minOperations(nums, x));
