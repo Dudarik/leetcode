@@ -352,3 +352,47 @@ var twoSum = function (numbers, target) {
 
 // (numbers = [-1, 0]), (target = -1);
 // console.log(twoSum(numbers, target));
+
+/**1658. Minimum Operations to Reduce X to Zero */
+/**https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/ */
+
+/**
+ * @param {number[]} nums
+ * @param {number} x
+ * @return {number}
+ */
+var minOperations = function (nums, x) {
+  const len = nums.length;
+
+  let total = 0;
+
+  for (let i = 0; i < len; i++) total += nums[i];
+
+  if (total < x) return -1;
+
+  let i = 0,
+    result = -1,
+    tSum = 0;
+
+  const map = new Map([[0, -1]]);
+
+  while (i < len) {
+    tSum += nums[i];
+    map.set(tSum, i);
+    console.log(map, tSum, total, x);
+    if (map.has(tSum - total + x)) {
+      result = Math.max(result, i - map.get(tSum - total + x));
+    }
+    i++;
+  }
+  return result === -1 ? -1 : len - result;
+};
+
+let nums = [1, 1, 4, 2, 3],
+  x = 5; //return 2
+
+(nums = [5, 6, 7, 8, 9]), (x = 4); //return -1
+
+(nums = [3, 2, 20, 1, 1, 3]), (x = 10); // return 5
+
+console.log(minOperations(nums, x));
