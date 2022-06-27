@@ -273,8 +273,30 @@ var removePalindromeSub = function (s) {
   return 1;
 };
 
-let s = "baabbab"; // return 2
+// let s = "baabbab"; // return 2
 //s = "abb"; //return 2
 // s = "ababa"; //return 1
 
-console.log(removePalindromeSub(s));
+// console.log(removePalindromeSub(s));
+
+/**1689. Partitioning Into Minimum Number Of Deci-Binary Numbers */
+/**https://leetcode.com/problems/partitioning-into-minimum-number-of-deci-binary-numbers/ */
+
+/**
+ * @param {string} n
+ * @return {number}
+ */
+var minPartitions = function (n) {
+  return Math.max(...n);
+};
+
+let n = "32";
+// Output: 3
+
+// n = "82734";
+// Output: 8
+
+// n = "27346209830709182346";
+// Output: 9
+
+console.log(minPartitions(n));
