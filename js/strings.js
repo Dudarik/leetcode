@@ -287,10 +287,10 @@ var removePalindromeSub = function (s) {
  * @return {number}
  */
 var minPartitions = function (n) {
-  return Math.max(...n);
+  return Math.max(...n.split(""));
 };
 
-let n = "32";
+// let n = "32";
 // Output: 3
 
 // n = "82734";
@@ -299,4 +299,4 @@ let n = "32";
 // n = "27346209830709182346";
 // Output: 9
 
-console.log(minPartitions(n));
+// console.log(minPartitions(n));
