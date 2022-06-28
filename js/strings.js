@@ -300,3 +300,51 @@ var minPartitions = function (n) {
 // Output: 9
 
 // console.log(minPartitions(n));
+
+/**1647. Minimum Deletions to Make Character Frequencies Unique */
+/**https://leetcode.com/problems/minimum-deletions-to-make-character-frequencies-unique/ */
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var minDeletions = function (s) {
+  const map = new Map();
+
+  for (let i = 0; i < s.length; i++) {
+    map.set(s[i], map.get(s[i]) ? map.get(s[i]) + 1 : 1);
+  }
+
+  const fqArr = Array.from(map.values()).sort((a, b) => b - a);
+
+  let cntDelArr = [];
+  const sum = fqArr.reduce((p, c) => p + c, 0);
+
+  for (let i = 0; i < fqArr.length; i++) {
+    // debugger;
+    while (fqArr[i] > 0) {
+      if (!cntDelArr.includes(fqArr[i])) {
+        cntDelArr.push(fqArr[i]);
+        break;
+      }
+      fqArr[i] -= 1;
+    }
+    if (fqArr[i] === 0) break;
+  }
+  // console.log(cntDelArr);
+
+  // console.log(map, fqArr);
+  return sum - cntDelArr.reduce((p, c) => p + c, 0);
+};
+
+// let s = "aab";
+// // Output: 0;
+// s = "aaabbbcc";
+// // Output: 2
+// s = "ceabaacb";
+// // Output: 2
+
+// s = "qqwwweearrtt";
+// // s = "aaabbbccc";
+
+// console.log(minDeletions(s));
