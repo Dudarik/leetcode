@@ -396,3 +396,42 @@ var minOperations = function (nums, x) {
 // (nums = [3, 2, 20, 1, 1, 3]), (x = 10); // return 5
 
 // console.log(minOperations(nums, x));
+
+/**406. Queue Reconstruction by Height */
+/**https://leetcode.com/problems/queue-reconstruction-by-height/ */
+
+/**
+ * @param {number[][]} people
+ * @return {number[][]}
+ */
+var reconstructQueue = function (people) {
+  const result = [];
+
+  people
+    .sort((a, b) => (a[0] != b[0] ? b[0] - a[0] : a[1] - b[1]))
+    .forEach((p) => result.splice(p[1], 0, p));
+
+  return result;
+};
+
+// let people = [
+//   [6, 0],
+//   [5, 0],
+//   [4, 0],
+//   [3, 2],
+//   [2, 2],
+//   [1, 4],
+// ];
+// Output: [[4,0],[5,0],[2,2],[3,2],[1,4],[6,0]]
+
+// people = [
+//   [7, 0],
+//   [4, 4],
+//   [7, 1],
+//   [5, 0],
+//   [6, 1],
+//   [5, 2],
+// ];
+// Output: [[5,0],[7,0],[5,2],[6,1],[4,4],[7,1]]
+
+// console.log(reconstructQueue(people));
