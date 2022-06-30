@@ -435,3 +435,33 @@ var reconstructQueue = function (people) {
 // Output: [[5,0],[7,0],[5,2],[6,1],[4,4],[7,1]]
 
 // console.log(reconstructQueue(people));
+
+/**462. Minimum Moves to Equal Array Elements II */
+/**https://leetcode.com/problems/minimum-moves-to-equal-array-elements-ii/ */
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var minMoves2 = function (nums) {
+  nums.sort((a, b) => a - b);
+
+  let mid = Math.round(nums.length / 2);
+
+  let cnt = 0;
+  for (let i = 0; i < mid; i++) {
+    cnt += nums[nums.length - 1 - i] - nums[i];
+  }
+
+  return cnt;
+};
+
+// let nums = [1, 2, 3];
+// //Output: 2
+
+// nums = [1, 10, 2, 9];
+// //Output: 16
+
+// nums = [1, 10, 2, 9, 2, 2, 2, 3];
+
+// console.log(minMoves2(nums));
