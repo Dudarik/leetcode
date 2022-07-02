@@ -465,3 +465,48 @@ var minMoves2 = function (nums) {
 // nums = [1, 10, 2, 9, 2, 2, 2, 3];
 
 // console.log(minMoves2(nums));
+
+/**1465. Maximum Area of a Piece of Cake After Horizontal and Vertical Cuts */
+/**https://leetcode.com/problems/maximum-area-of-a-piece-of-cake-after-horizontal-and-vertical-cuts/ */
+
+/**
+ * @param {number} h
+ * @param {number} w
+ * @param {number[]} horizontalCuts
+ * @param {number[]} verticalCuts
+ * @return {number}
+ */
+var maxArea = function (h, w, horizontalCuts, verticalCuts) {
+  horizontalCuts.push(0, h);
+  verticalCuts.push(0, w);
+
+  horizontalCuts.sort((a, b) => a - b);
+  verticalCuts.sort((a, b) => a - b);
+
+  let maxDiffW = 0;
+  let maxDiffH = 0;
+
+  for (let i = 0; i < verticalCuts.length - 1; i++) {
+    maxDiffW = Math.max(maxDiffW, verticalCuts[i + 1] - verticalCuts[i]);
+  }
+
+  for (let i = 0; i < horizontalCuts.length - 1; i++) {
+    maxDiffH = Math.max(maxDiffH, horizontalCuts[i + 1] - horizontalCuts[i]);
+  }
+  // console.log(maxDiffH, maxDiffW);
+  return (BigInt(maxDiffW) * BigInt(maxDiffH)) % 1000000007n;
+};
+
+// let h = 5,
+//   w = 4,
+//   horizontalCuts = [1, 2, 4],
+//   verticalCuts = [1, 3];
+// // Output: 4
+
+// (h = 5), (w = 4), (horizontalCuts = [1, 3]), (verticalCuts = [1]);
+// //Output: 6
+
+// (h = 5), (w = 4), (horizontalCuts = [3]), (verticalCuts = [3]);
+// //Output: 9
+
+// console.log(maxArea(h, w, horizontalCuts, verticalCuts));
