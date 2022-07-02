@@ -510,3 +510,64 @@ var maxArea = function (h, w, horizontalCuts, verticalCuts) {
 // //Output: 9
 
 // console.log(maxArea(h, w, horizontalCuts, verticalCuts));
+
+/**1710. Maximum Units on a Truck */
+/**https://leetcode.com/problems/maximum-units-on-a-truck/ */
+
+/**
+ * @param {number[][]} boxTypes
+ * @param {number} truckSize
+ * @return {number}
+ */
+var maximumUnits = function (boxTypes, truckSize) {
+  let result = 0,
+    curr = 0;
+
+  boxTypes.sort((a, b) => b[1] - a[1]);
+
+  for (let i = 0; i < boxTypes.length; i++) {
+    const count =
+      boxTypes[i][0] > truckSize - curr ? truckSize - curr : boxTypes[i][0];
+
+    curr += count;
+
+    result += count * boxTypes[i][1];
+
+    if (curr >= truckSize) break;
+  }
+
+  return result;
+};
+
+// let boxTypes = [
+//     [1, 3],
+//     [2, 2],
+//     [3, 1],
+//   ],
+//   truckSize = 4;
+// //Output: 8
+
+// (boxTypes = [
+//   [5, 10],
+//   [2, 5],
+//   [4, 7],
+//   [3, 9],
+// ]),
+//   (truckSize = 10);
+// // Output: 91
+
+// boxTypes = [
+//   [1, 3],
+//   [5, 5],
+//   [2, 5],
+//   [4, 2],
+//   [4, 1],
+//   [3, 1],
+//   [2, 2],
+//   [1, 3],
+//   [2, 5],
+//   [3, 2],
+// ];
+// truckSize = 35;
+
+// console.log(maximumUnits(boxTypes, truckSize));
