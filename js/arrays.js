@@ -571,3 +571,80 @@ var maximumUnits = function (boxTypes, truckSize) {
 // truckSize = 35;
 
 // console.log(maximumUnits(boxTypes, truckSize));
+
+/**376. Wiggle Subsequence */
+/**https://leetcode.com/problems/wiggle-subsequence/ */
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var wiggleMaxLength = function (nums) {
+  let length = 1;
+  let flag = null;
+
+  for (let i = 1; i < nums.length; ++i) {
+    if (nums[i] === nums[i - 1]) continue;
+
+    if (nums[i] > nums[i - 1]) {
+      if (flag !== true) {
+        flag = true;
+        ++length;
+      }
+    } else {
+      if (flag !== false) {
+        flag = false;
+        ++length;
+      }
+    }
+  }
+
+  return length;
+  // if (!nums.length) return 0;
+  // if (nums.length === 1) return 1;
+
+  // const resArr = [];
+
+  // for (let i = 1; i < nums.length; i++) {
+  //   const curr = nums[i] - nums[i - 1];
+  //   // debugger;
+  //   if (!resArr.length) {
+  //     if (curr != 0) resArr.push([nums[i], curr], [nums[i - 1], curr]);
+  //     else resArr.push([nums[i - 1], curr]);
+  //     continue;
+  //   }
+
+  //   if (curr === 0) continue;
+
+  //   if (curr < 0) {
+  //     if (resArr[resArr.length - 1][1] >= 0) resArr.push([nums[i - 1], curr]);
+  //     else continue;
+  //   }
+  //   if (curr > 0) {
+  //     if (resArr[resArr.length - 1][1] <= 0) resArr.push([nums[i - 1], curr]);
+  //     else continue;
+  //   }
+  // }
+
+  // return resArr.length;
+};
+
+// let nums = [1, 7, 4, 9, 2, 5];
+// //Output: 6
+
+// nums = [1, 17, 5, 10, 13, 15, 10, 5, 16, 8];
+// // Output: 7
+
+// // nums = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+// // Output: 2
+
+// // nums = [0, 0];
+// // Output: 1
+
+// // nums = [1, 7, 4, 9, 2, 5];
+// // Output: 6
+
+// // nums = [3, 3, 3, 2, 5];
+// // Output: 3
+
+// console.log(wiggleMaxLength(nums));
