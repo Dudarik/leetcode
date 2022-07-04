@@ -648,3 +648,46 @@ var wiggleMaxLength = function (nums) {
 // // Output: 3
 
 // console.log(wiggleMaxLength(nums));
+
+/**135. Candy */
+/**https://leetcode.com/problems/candy/ */
+
+/**
+ * @param {number[]} ratings
+ * @return {number}
+ */
+var candy = function (ratings) {
+  let nTotal = ratings.length;
+
+  const cntCandys = new Array(nTotal).fill(1);
+  // debugger;
+  for (let i = 1; i < ratings.length; i++) {
+    if (ratings[i] > ratings[i - 1]) {
+      nTotal -= cntCandys[i];
+
+      cntCandys[i] = cntCandys[i - 1] + 1;
+
+      nTotal += cntCandys[i];
+    }
+  }
+
+  for (let i = ratings.length - 2; i >= 0; i--) {
+    if (ratings[i] > ratings[i + 1] && cntCandys[i] <= cntCandys[i + 1]) {
+      nTotal -= cntCandys[i];
+
+      cntCandys[i] = cntCandys[i + 1] + 1;
+
+      nTotal += cntCandys[i];
+    }
+  }
+
+  return nTotal;
+};
+
+// let ratings = [1, 0, 2];
+// // Output: 5
+
+// ratings = [1, 2, 2];
+// // Output: 4
+
+// console.log(candy(ratings));
