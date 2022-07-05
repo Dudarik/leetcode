@@ -691,3 +691,42 @@ var candy = function (ratings) {
 // // Output: 4
 
 // console.log(candy(ratings));
+
+/**128. Longest Consecutive Sequence */
+/**https://leetcode.com/problems/longest-consecutive-sequence/ */
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var longestConsecutive = function (nums) {
+  if (nums.length === 0) return 0;
+  if (nums.length === 1) return 1;
+
+  nums.sort((a, b) => a - b);
+  let maxCount = 0,
+    currCount = 1;
+  // debugger;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i + 1] === nums[i]) continue;
+    if (nums[i + 1] - nums[i] === 1) {
+      currCount++;
+    } else {
+      currCount = 1;
+    }
+    maxCount = Math.max(maxCount, currCount);
+  }
+  return maxCount;
+};
+
+// let nums = [100, 4, 200, 1, 3, 2];
+// //Output: 4
+
+// // nums = [0, 3, 7, 2, 5, 8, 4, 6, 0, 1];
+// //Output: 9
+
+// // nums = [0, 0, 1];
+
+// // nums = [1, 2, 0, 1];
+
+// console.log(longestConsecutive(nums));
