@@ -194,13 +194,47 @@ var deepestLeavesSum = function (root) {
 
 // root = [6,7,8,2,7,1,3,9,null,1,4,null,null,null,5]
 
-const root = new TreeNode(
-  6,
-  new TreeNode(
-    7,
-    new TreeNode(2, new TreeNode(9)),
-    new TreeNode(7, new TreeNode(1), new TreeNode(4))
-  ),
-  new TreeNode(8, new TreeNode(1), new TreeNode(3, null, new TreeNode(5)))
-);
-console.log(deepestLeavesSum(root));
+// const root = new TreeNode(
+//   6,
+//   new TreeNode(
+//     7,
+//     new TreeNode(2, new TreeNode(9)),
+//     new TreeNode(7, new TreeNode(1), new TreeNode(4))
+//   ),
+//   new TreeNode(8, new TreeNode(1), new TreeNode(3, null, new TreeNode(5)))
+// );
+// console.log(deepestLeavesSum(root));
+
+/**199. Binary Tree Right Side View */
+/**https://leetcode.com/problems/binary-tree-right-side-view/ */
+
+var rightSideView = function (root) {
+  if (!root) return [];
+
+  const levels = [];
+
+  const dfs = (node, level = 0) => {
+    if (!node) return;
+
+    levels[level] = node.val;
+    dfs(node.left, level + 1);
+    dfs(node.right, level + 1);
+  };
+
+  dfs(root);
+
+  return levels;
+};
+
+// const tree = new TreeNode(
+//   1,
+//   new TreeNode(2, null, new TreeNode(5)),
+//   new TreeNode(3, null, new TreeNode(4))
+// );
+
+// //Output: [1,3,4]
+
+// // const tree = new TreeNode(1, null, new TreeNode(3));
+// // Output: [1,3]
+
+// console.log(rightSideView(tree));
