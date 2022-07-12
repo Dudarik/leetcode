@@ -730,3 +730,66 @@ var longestConsecutive = function (nums) {
 // // nums = [1, 2, 0, 1];
 
 // console.log(longestConsecutive(nums));
+
+/**473. Matchsticks to Square */
+/**https://leetcode.com/problems/matchsticks-to-square/ */
+
+/**
+ * @param {number[]} matchsticks
+ * @return {boolean}
+ */
+var makesquare = function (matchsticks) {
+  if (matchsticks.length < 4) return false;
+
+  let msSum = matchsticks.reduce((p, c) => p + c, 0);
+
+  if (msSum % 4 !== 0) return false;
+
+  const sizeOfSide = msSum / 4;
+
+  let a = (b = c = d = sizeOfSide); // square sides
+
+  matchsticks.sort((a, b) => b - a);
+
+  const travers = (matchsticks, i) => {
+    // debugger;
+    if (i === matchsticks.length) {
+      return a === 0 && b === 0 && c === 0 && d === 0 ? true : false;
+    }
+
+    if (matchsticks[i] <= a) {
+      a -= matchsticks[i];
+      if (travers(matchsticks, i + 1)) return true;
+      a += matchsticks[i];
+    }
+    if (matchsticks[i] <= b) {
+      b -= matchsticks[i];
+      if (travers(matchsticks, i + 1)) return true;
+      b += matchsticks[i];
+    }
+    if (matchsticks[i] <= c) {
+      c -= matchsticks[i];
+      if (travers(matchsticks, i + 1)) return true;
+      c += matchsticks[i];
+    }
+    if (matchsticks[i] <= d) {
+      d -= matchsticks[i];
+      if (travers(matchsticks, i + 1)) return true;
+      d += matchsticks[i];
+    }
+
+    return false;
+  };
+
+  return travers(matchsticks, 0);
+};
+
+// let matchsticks = [1, 1, 2, 2, 2];
+// // Output: true
+
+// // matchsticks = [3, 3, 3, 3, 4];
+// // Output: false
+
+// // matchsticks = [2, 2, 2, 2, 2, 2, 3, 1];
+
+// console.log(makesquare(matchsticks));
