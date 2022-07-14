@@ -238,3 +238,33 @@ var rightSideView = function (root) {
 // // Output: [1,3]
 
 // console.log(rightSideView(tree));
+
+/**105. Construct Binary Tree from Preorder and Inorder Traversal */
+/**https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/ */
+
+/**
+ * @param {number[]} preorder
+ * @param {number[]} inorder
+ * @return {TreeNode}
+ */
+var buildTree = function (preorder, inorder) {
+  if (!inorder.length || !preorder.length) return null;
+  // debugger;
+  const root = new TreeNode(preorder[0]);
+  const middle = inorder.indexOf(root.val);
+
+  root.left = buildTree(
+    preorder.slice(1, middle + 1),
+    inorder.slice(0, middle + 1)
+  );
+  root.right = buildTree(preorder.slice(middle + 1), inorder.slice(middle + 1));
+  return root;
+};
+
+let preorder = [3, 9, 20, 15, 7],
+  inorder = [9, 3, 15, 20, 7];
+// Output: [3,9,20,null,null,15,7]
+
+// (preorder = [-1]), (inorder = [-1]);
+// Output: [-1]
+console.log(buildTree(preorder, inorder));
