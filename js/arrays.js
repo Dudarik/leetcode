@@ -793,3 +793,40 @@ var makesquare = function (matchsticks) {
 // // matchsticks = [2, 2, 2, 2, 2, 2, 3, 1];
 
 // console.log(makesquare(matchsticks));
+
+/**629. K Inverse Pairs Array */
+/**https://leetcode.com/problems/k-inverse-pairs-array/ */
+
+/**
+ * @param {number} n
+ * @param {number} k
+ * @return {number}
+ */
+var kInversePairs = function (n, k) {
+  if (k === 0) return 1;
+  if (n === 1) return 0;
+
+  const modulo = 1e9 + 7;
+
+  let dp_old = new Array(k + 1).fill(0);
+  let dp_new = new Array(k + 1).fill(0);
+
+  dp_old[0] = dp_new[0] = 1;
+
+  for (let i = 1; i < n; i++) {
+    for (let j = 1; j <= k; j++) {
+      dp_new[j] = (dp_old[j] + dp_new[j - 1]) % modulo;
+
+      if (i < j) dp_new[j] = (modulo + dp_new[j] - dp_old[j - i - 1]) % modulo;
+    }
+    [dp_old, dp_new] = [dp_new, dp_old];
+  }
+  // console.log(dp_new, dp_old, k, modulo);
+  return dp_old[k] % modulo;
+};
+
+let n = 3,
+  k = 1;
+// Output: 1
+
+console.log(kInversePairs(n, k));
