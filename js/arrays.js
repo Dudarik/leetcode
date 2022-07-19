@@ -825,8 +825,45 @@ var kInversePairs = function (n, k) {
   return dp_old[k] % modulo;
 };
 
-let n = 3,
-  k = 1;
-// Output: 1
+// let n = 3,
+//   k = 1;
+// // Output: 1
 
-console.log(kInversePairs(n, k));
+// console.log(kInversePairs(n, k));
+
+/**118. Pascal's Triangle */
+/**https://leetcode.com/problems/pascals-triangle/ */
+
+/**
+ * @param {number} numRows
+ * @return {number[][]}
+ */
+var generate = function (numRows) {
+  if (numRows === 1) return [[1]];
+  if (numRows === 2) return [[1], [1, 1]];
+
+  const resArr = [[1], [1, 1]];
+
+  for (let i = 3; i <= numRows; i++) {
+    const tArr = resArr[1].slice();
+    // debugger;
+    let k = 0;
+    do {
+      tArr.splice(k + 1, 0, resArr[i - 2][k] + resArr[i - 2][k + 1]);
+      k++;
+    } while (k < resArr[i - 2].length - 1);
+
+    k = 0;
+    resArr.push(tArr);
+  }
+
+  return resArr;
+};
+
+// let numRows = 5;
+// // Output: [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]
+
+// // numRows = 1;
+// // Output: [[1]]
+
+// console.log(generate(numRows));
