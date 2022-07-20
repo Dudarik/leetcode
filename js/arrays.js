@@ -867,3 +867,39 @@ var generate = function (numRows) {
 // // Output: [[1]]
 
 // console.log(generate(numRows));
+
+/**792. Number of Matching Subsequences */
+/**https://leetcode.com/problems/number-of-matching-subsequences/ */
+
+/**
+ * @param {string} s
+ * @param {string[]} words
+ * @return {number}
+ */
+var numMatchingSubseq = function (s, words) {
+  let count = 0;
+
+  for (let i = 0; i < words.length; i++) {
+    let pW = (pS = 0);
+
+    while (pW < words[i].length && pS < s.length) {
+      if (words[i][pW] === s[pS]) {
+        pW += 1;
+        pS += 1;
+      } else {
+        pS += 1;
+      }
+    }
+
+    if (pW === words[i].length) count += 1;
+  }
+  return count;
+};
+
+// let s = "abcde",
+//   words = ["a", "bb", "acd", "ace"];
+// // Output: 3
+
+// // (s = "dsahjpjauf"), (words = ["ahjpjau", "ja", "ahbwzgqnuk", "tnmlanowax"]);
+// // Output: 2
+// console.log(numMatchingSubseq(s, words));
