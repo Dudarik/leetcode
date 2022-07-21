@@ -6,11 +6,10 @@
  * }
  */
 /**
- * @param {ListNode} list1
- * @param {ListNode} list2
+ * @param {number} val
+ * @param {ListNode} next
  * @return {ListNode}
  */
-
 function ListNode(val, next) {
   this.val = val === undefined ? 0 : val;
   this.next = next === undefined ? null : next;
@@ -232,10 +231,10 @@ var deleteDuplicates = function (head) {
   return arrToList(Array.from(new Set(listToArr(head))));
 };
 
-let head = new ListNode(
-  1,
-  new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(3))))
-);
+// let head = new ListNode(
+//   1,
+//   new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(3))))
+// );
 
 // console.log(deleteDuplicates(head));
 
@@ -329,3 +328,45 @@ var getIntersectionNode = function (headA, headB) {
 // const listB = new ListNode(5, new ListNode(6, new ListNode(1, intersect)));
 
 // console.log(getIntersectionNode(listA, listB));
+
+/**92. Reverse Linked List II */
+/**https://leetcode.com/problems/reverse-linked-list-ii/ */
+
+/**
+ * @param {ListNode} head
+ * @param {number} left
+ * @param {number} right
+ * @return {ListNode}
+ */
+var reverseBetween = function (head, left, right) {
+  let resHead = new ListNode(0),
+    prev = resHead;
+  resHead.next = head;
+
+  for (let i = 0; i < left - 1; i++) {
+    prev = prev.next;
+  }
+
+  let curr = prev.next;
+
+  for (let i = 0; i < right - left; i++) {
+    let tHead = prev.next;
+    prev.next = curr.next;
+    curr.next = curr.next.next;
+    prev.next.next = tHead;
+  }
+  return resHead.next;
+};
+
+let head = new ListNode(
+    1,
+    new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5))))
+  ),
+  left = 2,
+  right = 4;
+// Output: [1,4,3,2,5]
+
+// (head = new ListNode(5)), (left = 1), (right = 1);
+// Output: [5]
+
+console.log(reverseBetween(head, left, right));
