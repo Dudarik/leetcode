@@ -903,3 +903,46 @@ var numMatchingSubseq = function (s, words) {
 // // (s = "dsahjpjauf"), (words = ["ahjpjau", "ja", "ahbwzgqnuk", "tnmlanowax"]);
 // // Output: 2
 // console.log(numMatchingSubseq(s, words));
+
+/**315. Count of Smaller Numbers After Self */
+/**https://leetcode.com/problems/count-of-smaller-numbers-after-self/ */
+
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var countSmaller = function (nums) {
+  const lenNums = nums.length;
+  const resArr = new Array(lenNums).fill(0);
+  const tArr = [];
+
+  const lowerBound = (arr, target) => {
+    let left = 0;
+    let right = arr.length;
+
+    while (left < right) {
+      const mid = Math.floor((right + left) / 2);
+      target <= arr[mid] ? (right = mid) : (left = mid + 1);
+    }
+
+    return left;
+  };
+
+  for (let i = lenNums - 1; i >= 0; i--) {
+    const id = lowerBound(tArr, nums[i]);
+    resArr[i] = id;
+    tArr.splice(id, 0, nums[i]);
+  }
+  return resArr;
+};
+
+let nums = [5, 2, 6, 1];
+// Output: [2,1,1,0]
+
+nums = [-1];
+// Output: [0]
+
+nums = [-1, -1];
+// Output: [0,0]
+
+console.log(countSmaller(nums));

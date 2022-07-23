@@ -433,11 +433,11 @@ var partition = function (head, x) {
   return before_head.next;
 };
 
-let head = arrToList([1, 4, 3, 2, 5, 2]),
-  x = 3;
-// Output: [1,2,2,4,3,5]
+// let head = arrToList([1, 4, 3, 2, 5, 2]),
+//   x = 3;
+// // Output: [1,2,2,4,3,5]
 
-(head = arrToList([2, 1])), (x = 2);
-// Output: [1,2]
+// (head = arrToList([2, 1])), (x = 2);
+// // Output: [1,2]
 
-console.log(listToArr(partition(head, x)));
+// console.log(listToArr(partition(head, x)));
