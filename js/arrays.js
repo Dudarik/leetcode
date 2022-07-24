@@ -825,8 +825,8 @@ var kInversePairs = function (n, k) {
   return dp_old[k] % modulo;
 };
 
-let n = 3,
-  k = 1;
+// let n = 3,
+//   k = 1;
 // Output: 1
 
-console.log(kInversePairs(n, k));
+// console.log(kInversePairs(n, k));

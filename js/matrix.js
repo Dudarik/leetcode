@@ -45,3 +45,27 @@ var shortestPathBinaryMatrix = function (grid) {
 
   return -1;
 };
+
+/**1074. Number of Submatrices That Sum to Target */
+/**https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/ */
+
+/**
+ * @param {number[][]} matrix
+ * @param {number} target
+ * @return {number}
+ */
+var numSubmatrixSumTarget = function (matrix, target) {};
+
+let matrix = [
+    [0, 1, 0],
+    [1, 1, 1],
+    [0, 1, 0],
+  ],
+  target = 0;
+// Output: 4
+
+// matrix = [[1,-1],[-1,1]], target = 0
+// Output: 5
+
+// matrix = [[904]], target = 0
+// Output: 0
