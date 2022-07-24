@@ -830,3 +830,122 @@ var kInversePairs = function (n, k) {
 // Output: 1
 
 // console.log(kInversePairs(n, k));
+// // Output: 1
+
+// console.log(kInversePairs(n, k));
+
+/**118. Pascal's Triangle */
+/**https://leetcode.com/problems/pascals-triangle/ */
+
+/**
+ * @param {number} numRows
+ * @return {number[][]}
+ */
+var generate = function (numRows) {
+  if (numRows === 1) return [[1]];
+  if (numRows === 2) return [[1], [1, 1]];
+
+  const resArr = [[1], [1, 1]];
+
+  for (let i = 3; i <= numRows; i++) {
+    const tArr = resArr[1].slice();
+    // debugger;
+    let k = 0;
+    do {
+      tArr.splice(k + 1, 0, resArr[i - 2][k] + resArr[i - 2][k + 1]);
+      k++;
+    } while (k < resArr[i - 2].length - 1);
+
+    k = 0;
+    resArr.push(tArr);
+  }
+
+  return resArr;
+};
+
+// let numRows = 5;
+// // Output: [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]
+
+// // numRows = 1;
+// // Output: [[1]]
+
+// console.log(generate(numRows));
+
+/**792. Number of Matching Subsequences */
+/**https://leetcode.com/problems/number-of-matching-subsequences/ */
+
+/**
+ * @param {string} s
+ * @param {string[]} words
+ * @return {number}
+ */
+var numMatchingSubseq = function (s, words) {
+  let count = 0;
+
+  for (let i = 0; i < words.length; i++) {
+    let pW = (pS = 0);
+
+    while (pW < words[i].length && pS < s.length) {
+      if (words[i][pW] === s[pS]) {
+        pW += 1;
+        pS += 1;
+      } else {
+        pS += 1;
+      }
+    }
+
+    if (pW === words[i].length) count += 1;
+  }
+  return count;
+};
+
+// let s = "abcde",
+//   words = ["a", "bb", "acd", "ace"];
+// // Output: 3
+
+// // (s = "dsahjpjauf"), (words = ["ahjpjau", "ja", "ahbwzgqnuk", "tnmlanowax"]);
+// // Output: 2
+// console.log(numMatchingSubseq(s, words));
+
+/**315. Count of Smaller Numbers After Self */
+/**https://leetcode.com/problems/count-of-smaller-numbers-after-self/ */
+
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var countSmaller = function (nums) {
+  const lenNums = nums.length;
+  const resArr = new Array(lenNums).fill(0);
+  const tArr = [];
+
+  const lowerBound = (arr, target) => {
+    let left = 0;
+    let right = arr.length;
+
+    while (left < right) {
+      const mid = Math.floor((right + left) / 2);
+      target <= arr[mid] ? (right = mid) : (left = mid + 1);
+    }
+
+    return left;
+  };
+
+  for (let i = lenNums - 1; i >= 0; i--) {
+    const id = lowerBound(tArr, nums[i]);
+    resArr[i] = id;
+    tArr.splice(id, 0, nums[i]);
+  }
+  return resArr;
+};
+
+let nums = [5, 2, 6, 1];
+// Output: [2,1,1,0]
+
+nums = [-1];
+// Output: [0]
+
+nums = [-1, -1];
+// Output: [0,0]
+
+console.log(countSmaller(nums));

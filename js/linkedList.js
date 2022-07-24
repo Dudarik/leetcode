@@ -6,14 +6,44 @@
  * }
  */
 /**
- * @param {ListNode} list1
- * @param {ListNode} list2
+ * @param {number | string} val
+ * @param {ListNode} next
  * @return {ListNode}
  */
-
 function ListNode(val, next) {
   this.val = val === undefined ? 0 : val;
   this.next = next === undefined ? null : next;
+}
+
+/**
+ * @param {Array} array
+ * @return {ListNode}
+ */
+function arrToList(array) {
+  let listNode = new ListNode(0);
+  const headLN = listNode;
+
+  for (let i = 0; i < array.length; i++) {
+    listNode.next = new ListNode(array[i]);
+    listNode = listNode.next;
+  }
+
+  return headLN.next;
+}
+
+/**
+ * @param {ListNode} listNode
+ * @return {Array}
+ */
+
+function listToArr(listNode) {
+  const resultArray = [];
+  // debugger;
+  while (listNode) {
+    resultArray.push(listNode.val);
+    listNode = listNode.next;
+  }
+  return resultArray;
 }
 
 function LinkedList() {
@@ -232,10 +262,10 @@ var deleteDuplicates = function (head) {
   return arrToList(Array.from(new Set(listToArr(head))));
 };
 
-let head = new ListNode(
-  1,
-  new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(3))))
-);
+// let head = new ListNode(
+//   1,
+//   new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(3))))
+// );
 
 // console.log(deleteDuplicates(head));
 
@@ -329,3 +359,85 @@ var getIntersectionNode = function (headA, headB) {
 // const listB = new ListNode(5, new ListNode(6, new ListNode(1, intersect)));
 
 // console.log(getIntersectionNode(listA, listB));
+
+/**92. Reverse Linked List II */
+/**https://leetcode.com/problems/reverse-linked-list-ii/ */
+
+/**
+ * @param {ListNode} head
+ * @param {number} left
+ * @param {number} right
+ * @return {ListNode}
+ */
+var reverseBetween = function (head, left, right) {
+  let resHead = new ListNode(0),
+    prev = resHead;
+  resHead.next = head;
+
+  for (let i = 0; i < left - 1; i++) {
+    prev = prev.next;
+  }
+
+  let curr = prev.next;
+
+  for (let i = 0; i < right - left; i++) {
+    let tHead = prev.next;
+    prev.next = curr.next;
+    curr.next = curr.next.next;
+    prev.next.next = tHead;
+  }
+  return resHead.next;
+};
+
+// let head = new ListNode(
+//     1,
+//     new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5))))
+//   ),
+//   left = 2,
+//   right = 4;
+// Output: [1,4,3,2,5]
+
+// (head = new ListNode(5)), (left = 1), (right = 1);
+// Output: [5]
+
+// console.log(reverseBetween(head, left, right));
+
+/**86. Partition List */
+/**https://leetcode.com/problems/partition-list/ */
+
+/**
+ * @param {ListNode} head
+ * @param {number} x
+ * @return {ListNode}
+ */
+var partition = function (head, x) {
+  const before_head = new ListNode(0);
+  const after_head = new ListNode(0);
+
+  let before = before_head;
+  let after = after_head;
+
+  while (head) {
+    if (head.val < x) {
+      before.next = head;
+      before = before.next;
+    } else {
+      after.next = head;
+      after = after.next;
+    }
+    head = head.next;
+  }
+  after.next = null;
+
+  before.next = after_head.next;
+  return before_head.next;
+};
+
+// let head = arrToList([1, 4, 3, 2, 5, 2]),
+//   x = 3;
+// // Output: [1,2,2,4,3,5]
+
+// (head = arrToList([2, 1])), (x = 2);
+// // Output: [1,2]
+
+// console.log(listToArr(partition(head, x)));
