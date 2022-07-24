@@ -56,12 +56,12 @@ var shortestPathBinaryMatrix = function (grid) {
  */
 var numSubmatrixSumTarget = function (matrix, target) {};
 
-let matrix = [
-    [0, 1, 0],
-    [1, 1, 1],
-    [0, 1, 0],
-  ],
-  target = 0;
+// let matrix = [
+//     [0, 1, 0],
+//     [1, 1, 1],
+//     [0, 1, 0],
+//   ],
+//   target = 0;
 // Output: 4
 
 // matrix = [[1,-1],[-1,1]], target = 0
@@ -69,3 +69,47 @@ let matrix = [
 
 // matrix = [[904]], target = 0
 // Output: 0
+
+/**240. Search a 2D Matrix II */
+/**https://leetcode.com/problems/search-a-2d-matrix-ii/ */
+/**
+ * @param {number[][]} matrix
+ * @param {number} target
+ * @return {boolean}
+ */
+var searchMatrix = function (matrix, target) {
+  let row = 0,
+    col = matrix[0].length - 1;
+  // debugger;
+  while (col >= 0 && row < matrix.length) {
+    if (matrix[row][col] === target) return true;
+    else if (matrix[row][col] < target) row++;
+    else col--;
+  }
+
+  return false;
+};
+
+// let matrix = [
+//     [1, 4, 7, 11, 15],
+//     [2, 5, 8, 12, 19],
+//     [3, 6, 9, 16, 22],
+//     [10, 13, 14, 17, 24],
+//     [18, 21, 23, 26, 30],
+//   ],
+//   target = 5;
+// // Output: true
+
+// // (matrix = [
+// //   [1, 4, 7, 11, 15],
+// //   [2, 5, 8, 12, 19],
+// //   [3, 6, 9, 16, 22],
+// //   [10, 13, 14, 17, 24],
+// //   [18, 21, 23, 26, 30],
+// // ]),
+// //   (target = 20);
+// // Output: false
+
+// (matrix = [[-1, 3]]), (target = 3);
+
+// console.log(searchMatrix(matrix, target));
