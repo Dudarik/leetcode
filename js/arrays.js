@@ -827,6 +827,9 @@ var kInversePairs = function (n, k) {
 
 // let n = 3,
 //   k = 1;
+// Output: 1
+
+// console.log(kInversePairs(n, k));
 // // Output: 1
 
 // console.log(kInversePairs(n, k));
