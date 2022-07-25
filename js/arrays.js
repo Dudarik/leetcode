@@ -936,13 +936,66 @@ var countSmaller = function (nums) {
   return resArr;
 };
 
-let nums = [5, 2, 6, 1];
-// Output: [2,1,1,0]
+// let nums = [5, 2, 6, 1];
+// // Output: [2,1,1,0]
 
-nums = [-1];
-// Output: [0]
+// nums = [-1];
+// // Output: [0]
 
-nums = [-1, -1];
-// Output: [0,0]
+// nums = [-1, -1];
+// // Output: [0,0]
 
-console.log(countSmaller(nums));
+// console.log(countSmaller(nums));
+
+/**34. Find First and Last Position of Element in Sorted Array */
+/**https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/ */
+
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var searchRange = function (nums, target) {
+  /**
+   * @param {number[]} nums
+   * @param {number} target
+   * @param {bool} getFirst //getFirst === true - get first, false - get last
+   * @return {number[]}
+   */
+  const getId = (nums, target, getFirst) => {
+    let start = 0,
+      end = nums.length - 1,
+      retVal = -1;
+
+    while (start <= end) {
+      let mid = start + Math.floor((end - start) / 2);
+      if (nums[mid] === target) {
+        retVal = mid;
+        if (getFirst) end = mid - 1;
+        else start = mid + 1;
+      } else if (nums[mid] > target) end = mid - 1;
+      else start = mid + 1;
+    }
+    return retVal;
+  };
+
+  const first = getId(nums, target, true);
+
+  if (first === -1) return [-1, -1];
+
+  const last = getId(nums, target, false);
+
+  return [first, last];
+};
+
+// let nums = [5, 7, 7, 8, 8, 10],
+//   target = 8;
+// // Output: [3,4]
+
+// (nums = [5, 7, 7, 8, 8, 10]), (target = 6);
+// // Output: [-1,-1]
+
+// (nums = []), (target = 0);
+// // Output: [-1,-1]
+
+// console.log(searchRange(nums, target));
