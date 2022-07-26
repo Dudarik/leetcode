@@ -7,7 +7,10 @@
  * }
  */
 /**
- * @param {TreeNode} root
+ * @param {number} val
+ * @param {TreeNode} left
+ * @param {TreeNode} right
+ * @return {TreeNode}
  */
 
 function TreeNode(val, left, right) {
@@ -261,10 +264,48 @@ var buildTree = function (preorder, inorder) {
   return root;
 };
 
-let preorder = [3, 9, 20, 15, 7],
-  inorder = [9, 3, 15, 20, 7];
-// Output: [3,9,20,null,null,15,7]
+// let preorder = [3, 9, 20, 15, 7],
+//   inorder = [9, 3, 15, 20, 7];
+// // Output: [3,9,20,null,null,15,7]
 
-// (preorder = [-1]), (inorder = [-1]);
-// Output: [-1]
-console.log(buildTree(preorder, inorder));
+// // (preorder = [-1]), (inorder = [-1]);
+// // Output: [-1]
+// console.log(buildTree(preorder, inorder));
+
+/**236. Lowest Common Ancestor of a Binary Tree */
+/**https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/ */
+
+/**
+ * @param {TreeNode} root
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {TreeNode}
+ */
+var lowestCommonAncestor = function (root, p, q) {
+  // console.log(root);
+  if (!root || root === p || root === q) return root;
+  var resL = lowestCommonAncestor(root.left, p, q);
+  var resR = lowestCommonAncestor(root.right, p, q);
+  console.log(resL, resR);
+  return resL && resR ? root : resL || resR;
+};
+
+// [3,5,1,6,2,0,8,null,null,7,4],
+// let root = new TreeNode(
+//   3,
+//   new TreeNode(
+//     5,
+//     new TreeNode(6),
+//     new TreeNode(2, new TreeNode(7), new TreeNode(4))
+//   ),
+//   new TreeNode(1),
+//   new TreeNode(0),
+//   new TreeNode(8)
+// );
+// let p = 5,
+//   q = 1;
+// // Output: 3
+
+// // (root = new TreeNode(1, new TreeNode(2))), (p = 1), (q = 2);
+// // Output: 1
+// console.log(lowestCommonAncestor(root, p, q));
