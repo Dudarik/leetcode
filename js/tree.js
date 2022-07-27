@@ -309,3 +309,48 @@ var lowestCommonAncestor = function (root, p, q) {
 // // (root = new TreeNode(1, new TreeNode(2))), (p = 1), (q = 2);
 // // Output: 1
 // console.log(lowestCommonAncestor(root, p, q));
+
+/**114. Flatten Binary Tree to Linked List */
+/**https://leetcode.com/problems/flatten-binary-tree-to-linked-list/ */
+
+/**
+ * @param {TreeNode} root
+ * @return {void} Do not return anything, modify root in-place instead.
+ */
+var flatten = function (root) {
+  const bfs = (root, prev) => {
+    if (!root) return;
+
+    bfs(root.right, prev);
+    bfs(root.left, prev);
+
+    root.right = prev.node;
+    root.left = null;
+
+    prev.node = root;
+  };
+
+  const prev = { node: null };
+
+  bfs(root, prev);
+};
+
+// root = [1,2,5,3,4,null,6]
+// Output: [1,null,2,null,3,null,4,null,5,null,6]
+
+// let root = new TreeNode(
+//   1,
+//   new TreeNode(2, new TreeNode(3), new TreeNode(4)),
+//   new TreeNode(5, null, new TreeNode(6))
+// );
+
+// // Input: root = []
+// // Output: []
+
+// // root = new TreeNode(0);
+
+// // root = [0]
+// // Output: [0]
+
+// console.log(flatten(root));
+// console.log(root);
