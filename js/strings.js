@@ -348,3 +348,38 @@ var minDeletions = function (s) {
 // // s = "aaabbbccc";
 
 // console.log(minDeletions(s));
+
+/**242. Valid Anagram */
+/**https://leetcode.com/problems/valid-anagram/ */
+
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isAnagram = function (s, t) {
+  // return [...s].sort().join() === [...t].sort().join();
+  if (s.length !== t.length) return false;
+  const alphabet = new Array(26).fill(0);
+
+  for (let i = 0; i < s.length; i++) {
+    alphabet[s.charCodeAt(i) - 97]++;
+  }
+  // debugger;
+
+  for (let i = 0; i < t.length; i++) {
+    alphabet[t.charCodeAt(i) - 97]--;
+  }
+
+  return alphabet.every((letter) => letter === 0);
+};
+
+// let s = "anagram",
+//   t = "nagaramaa";
+// // Output: true
+
+// // (s = "rat"), (t = "car");
+// // Output: false
+// // (s = "a"), (t = "ab");
+
+// console.log(isAnagram(s, t));
