@@ -209,39 +209,80 @@ UndergroundSystem.prototype.getAverageTime = function (
 // console.log(undergroundSystem.getAverageTime("Leyton", "Waterloo")); // return 11.00000
 // undergroundSystem.checkOut(10, "Waterloo", 38); // Customer 10 "Leyton" -> "Waterloo" in 38-24 = 14
 // console.log(undergroundSystem.getAverageTime("Leyton", "Waterloo")); // return 12.00000.
-const undergroundSystem = new UndergroundSystem();
+// const undergroundSystem = new UndergroundSystem();
 
-const stat = [
-  "checkIn",
-  "checkIn",
-  "checkIn",
-  "checkOut",
-  "checkOut",
-  "checkOut",
-  // "getAverageTime",
-  // "getAverageTime",
-  // "checkIn",
-  // "getAverageTime",
-  // "checkOut",
-  // "getAverageTime",
-];
-const exp = [
-  [45, "a", 3],
-  [32, "aa", 8],
-  [27, "a", 10],
-  [45, "ab", 15],
-  [27, "ab", 20],
-  [32, "b", 22],
-  // ["aa", "b"],
-  // ["a", "ab"],
-  // [10, "a", 24],
-  // ["a", "ab"],
-  // [10, "ab", 38],
-  // ["a", "ab"],
-];
+// const stat = [
+//   "checkIn",
+//   "checkIn",
+//   "checkIn",
+//   "checkOut",
+//   "checkOut",
+//   "checkOut",
+//   // "getAverageTime",
+//   // "getAverageTime",
+//   // "checkIn",
+//   // "getAverageTime",
+//   // "checkOut",
+//   // "getAverageTime",
+// ];
+// const exp = [
+//   [45, "a", 3],
+//   [32, "aa", 8],
+//   [27, "a", 10],
+//   [45, "ab", 15],
+//   [27, "ab", 20],
+//   [32, "b", 22],
+//   // ["aa", "b"],
+//   // ["a", "ab"],
+//   // [10, "a", 24],
+//   // ["a", "ab"],
+//   // [10, "ab", 38],
+//   // ["a", "ab"],
+// ];
 
-for (let i = 0; i < stat.length; i++) {
-  undergroundSystem[stat[i]](exp[i][0], exp[i][1], exp[i][2]);
-}
+// for (let i = 0; i < stat.length; i++) {
+//   undergroundSystem[stat[i]](exp[i][0], exp[i][1], exp[i][2]);
+// }
 
-console.log(undergroundSystem.getAverageTime("aa", "b"));
+// console.log(undergroundSystem.getAverageTime("aa", "b"));
+
+/**890. Find and Replace Pattern */
+/**https://leetcode.com/problems/find-and-replace-pattern/ */
+
+/**
+ * @param {string[]} words
+ * @param {string} pattern
+ * @return {string[]}
+ */
+var findAndReplacePattern = function (words, pattern) {
+  const compare = (word, pattern) => {
+    const map1 = new Map();
+    const map2 = new Map();
+    for (let i = 0; i < word.length; i++) {
+      const w = word[i];
+      const p = pattern[i];
+
+      if (!map1.get(w)) map1.set(w, p);
+      if (!map2.get(p)) map2.set(p, w);
+
+      if (map1.get(w) !== p || map2.get(p) !== w) return false;
+    }
+    return true;
+  };
+
+  const result = [];
+
+  for (let i = 0; i < words.length; i++) {
+    if (compare(words[i], pattern)) result.push(words[i]);
+  }
+  return result;
+};
+
+// let words = ["abc", "deq", "mee", "aqq", "dkd", "ccc"],
+//   pattern = "abb";
+// // Output: ["mee","aqq"]
+
+// // (words = ["a", "b", "c"]), (pattern = "a");
+// // Output: ["a","b","c"]
+
+// console.log(findAndReplacePattern(words, pattern));
