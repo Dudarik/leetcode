@@ -113,3 +113,76 @@ var searchMatrix = function (matrix, target) {
 // (matrix = [[-1, 3]]), (target = 3);
 
 // console.log(searchMatrix(matrix, target));
+
+/**378. Kth Smallest Element in a Sorted Matrix */
+/**https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/ */
+
+/**
+ * @param {number[][]} matrix
+ * @param {number} k
+ * @return {number}
+ */
+var kthSmallest = function (matrix, k) {
+  const n = matrix.length;
+  let low = matrix[0][0];
+  let high = matrix[n - 1][n - 1];
+  // debugger;
+  const countLow = (matrix, target) => {
+    let count = 0,
+      i = n - 1,
+      j = 0;
+
+    while (i >= 0 && j < n) {
+      if (matrix[i][j] > target) i--;
+      else {
+        count += i + 1;
+        j++;
+      }
+    }
+    return count;
+  };
+
+  while (low < high) {
+    // debugger;
+    const mid = Math.floor(low + (high - low) / 2);
+    const count = countLow(matrix, mid);
+
+    if (count < k) low = mid + 1;
+    else high = mid;
+  }
+  return low;
+};
+
+let matrix = [
+    [1, 5, 9],
+    [10, 11, 13],
+    [12, 13, 15],
+  ],
+  k = 8;
+// Output: 13
+
+// (matrix = [[-5]]), (k = 1);
+// Output: -5;
+
+// (matrix = [
+//   [1, 2],
+//   [1, 3],
+// ]),
+//   (k = 2);
+// Output: 1;
+
+// (matrix = [
+//   [1, 2],
+//   [3, 3],
+// ]),
+//   (k = 2);
+// Output: 2
+
+// (matrix = [
+//   [1, 2],
+//   [1, 3],
+// ]),
+//   (k = 3);
+// Output: 2
+
+console.log(kthSmallest(matrix, k));
