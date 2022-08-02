@@ -153,12 +153,12 @@ var kthSmallest = function (matrix, k) {
   return low;
 };
 
-let matrix = [
-    [1, 5, 9],
-    [10, 11, 13],
-    [12, 13, 15],
-  ],
-  k = 8;
+// let matrix = [
+//     [1, 5, 9],
+//     [10, 11, 13],
+//     [12, 13, 15],
+//   ],
+//   k = 8;
 // Output: 13
 
 // (matrix = [[-5]]), (k = 1);
@@ -185,4 +185,4 @@ let matrix = [
 //   (k = 3);
 // Output: 2
 
-console.log(kthSmallest(matrix, k));
+// console.log(kthSmallest(matrix, k));
